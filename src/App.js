@@ -4,7 +4,8 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-
+import Header from './Header';
+import Profile from './Profile'
 
 
 const my404 = () => {
@@ -82,6 +83,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
           <Route exact path='/register' render={(props) => <Register {...props} register={this.register} />} />
+          <Route exact path='/profile' render{(props) => <Profile {...props} userinfo={this.state} /> } />
         </Switch>
       </main>
       )
