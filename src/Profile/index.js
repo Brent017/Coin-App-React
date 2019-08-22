@@ -26,7 +26,7 @@ class Profile extends Component {
 								image={'http://localhost:8000/profile_pics/' + this.props.userInfo.image}
 								header={this.props.username}
 								meta={this.props.email}
-								description='If you want a caption'
+								description='If you want a caption in Profile.index.js'
 								style={{ 'marginLeft': '5vw'}}
 								/>
 						}
