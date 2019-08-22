@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
@@ -55,8 +54,9 @@ class App extends Component {
     }
   }
   register = async(data) => {
+    console.log(data);
     try {
-      const registerResponse = await fetch('httpd://localhost:8000/user/register', {
+      const registerResponse = await fetch('http://localhost:8000/user/register', {
         method: 'POST',
         credentials: 'include',
         body: data,
@@ -81,9 +81,10 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
-          <Route exact path='/register' render={(props) => <Register {...props} register={this.register} />} />
-          <Route exact path='/profile' render{(props) => <Profile {...props} userinfo={this.state} /> } />
+          <Route exact path="/" render={(props) => <Login {...props} logIn={this.logIn} />} />
+            <Route exact path="/register" render={(props) => <Register {...props} register={this.register} /> } />
+            <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
+            <Route component={my404} />
         </Switch>
       </main>
       )

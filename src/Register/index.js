@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class Register extends Component {
@@ -10,11 +10,12 @@ class Register extends Component {
 			username: '',
 			email: '',
 			password: '',
-			image: ''
+			image: {}
 		}
 	}
 
 	handleChange = (e) => {
+		// console.log(e.currentTarget);
 		if(e.currentTarget.name !== 'image') {
 			this.setState({
 				[e.currentTarget.name]: e.currentTarget.value
@@ -36,19 +37,20 @@ class Register extends Component {
 		data.append('email', this.state.email);
 		data.append('password', this.state.password);
 
-		console.log(data.entries(), '<-data from Register');
+		console.log(data.entries(), '<-this is data from Register');
+		// console.log(e);
 		for(let pair of data.entries()) {
-			console.log(pair[0] ,', ', pair[1]);
+			console.log(pair[0] ,', ', pair[1], '<-each key value pair');
 		}
+		console.log(data, 'before registerFunction');
+		const registerFunction = this.props.register(data);
 
-		const registerCall = this.props.register(data);
-
-		registerCall.then((data) => {
-			console.log(data);
+		registerFunction.then((data) => {
+			console.log(data, 'data in registerFunction');
 			if(data.status.message === 'Success!') {
 				this.props.history.push('/profile')
 			} else {
-				console.log(data, '<-should be error message in registerCall');
+				console.log(data, '<-should be error message in registerFunction');
 			}
 		})
 	}
