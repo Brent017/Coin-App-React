@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Card, Icon } from 'semantic-ui-react';
+// import { Link } from 'react-router-dom';
+import { Grid, Card, Header } from 'semantic-ui-react';
 
 class Profile extends Component {
 	constructor() {
@@ -15,7 +15,7 @@ class Profile extends Component {
 	}
 
 	render() {
-		console.log(this.state, this.props.userInfo, '<-in profile<props');
+		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
 			<Grid columns={2} padded style={{ height: '100vh'}}>
 				<Grid.Row>
@@ -30,6 +30,11 @@ class Profile extends Component {
 								style={{ 'marginLeft': '5vw'}}
 								/>
 						}
+					</Grid.Column>
+					<Grid.Column width={8}>
+						<Header as='h2' textAlign='center'>
+							{this.props.userInfo.username}'s Coins
+						</Header>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
