@@ -24,7 +24,7 @@ class CoinContainer extends Component {
 		try {
 			const createCoin await fetch('http://localhost:8000/api/v1/coin', {
 				method: 'POST',
-				body: JSON.stringify(employee),
+				body: JSON.stringify(coin),
 				headers: {
 					'Content-Type': 'application/json'
 				}
