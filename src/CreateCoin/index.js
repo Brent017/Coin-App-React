@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button, Label, Input } from 'semantic-ui-react';
 
 class CreateCoin extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			year: '',
@@ -29,7 +29,7 @@ class CreateCoin extends Component {
 	render() {
 		return (
 			<div>
-				<h3>Create New Employee</h3>
+				<h3>Add New Coin</h3>
 				<Form form onSubmit={this.props.addCoin.bind(null, this.state)} onReset={this.handleClear} class='ui form'>
 				<div class='two fields'>
 					<div class='field'>
