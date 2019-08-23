@@ -7,30 +7,46 @@ class Login extends Component {
 		super();
 
 		this.state = {
-			email: '',
+			username: '',
 			password: ''
 		}
 	}
 
 	handleChange = (e) => {
+		// console.log(e.currentTarget.value);
 		this.setState({
 			[e.currentTarget.name]: e.currentTarget.value
 		});
 	}
 
 	handleSubmit = async (e) => {
-		e.preventDefault();
+    e.preventDefault();
 
-		const login = this.props.logIn(this.state);
+    console.log(this.state.email);
 
-		login.then((data) => {
-			if(data.status.message === 'Success!') {
-				this.props.history.push('/profile')
-			} else {
-				console.log(data, this.props);
-			}
-		})
-	}
+    const data = new FormData()
+    data.append('username', this.state.username)
+    data.append('password', this.state.password)
+
+    console.log(data, "<-data after appending key-value");
+    const login = this.props.logIn(this.state);
+
+    for(let pair of data.entries()) {
+			console.log(pair[0], '<-key value pair');
+		}
+
+	console.log(data.status, 'message from server');
+    login.then((data) => {
+      if(data.status.message === 'Success!'){
+        this.props.history.push('/profile')
+      } else {
+        console.log(data, this.props)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  }
 
 	render() {
 		return (
@@ -41,8 +57,10 @@ class Login extends Component {
 					</Header>
 					<Form onSubmit={this.handleSubmit} >
 						<Segment stacked >
-						Email:
-						<Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange} />
+						Username:
+						<Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange} />
+						Password:
+						<Form.Input fluid icon='asterisk' iconPosition='left' placeholder='password' type='text' name='password' onChange={this.handleChange} />
 						<Button fluid size='large' type='submit'>Login</Button>
 						<Message>
 							Not registered? <Link to='/register'>Register Now</Link>

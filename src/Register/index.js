@@ -74,7 +74,7 @@ class Register extends Component {
 						<Form.Input fluid icon='image' iconPosition='left' type='file' name='image' onChange={this.handleChange} />
 						<Button fluid size='large' type='submit'>Register</Button>
 						<Message>
-							Already A Member? <Link to='/Login'>Login</Link>
+							Already A Member? <Link to='/'>Login</Link>
 						</Message>
 						</Segment>
 					</Form>

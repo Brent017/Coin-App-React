@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { Grid, Card, Header } from 'semantic-ui-react';
+import CreateCoin from '../CreateCoin';
+import CoinList from '../CoinList';
+import ReactDom from 'react-dom'
+
 
 class Profile extends Component {
 	constructor() {
@@ -10,11 +14,33 @@ class Profile extends Component {
 			id: 1,
 			email: '',
 			image: '',
-			uesrname: ''
+			username: '',
+			timeOfDay: ''
+		}
+	}
+
+	greeting = () => {
+		const date = new Date();
+		console.log(date);
+		const hours = date.getHours();
+
+		if(hours < 12) {
+			this.setState({
+				timeOfDay: 'morning'
+			})
+		} else if(hours >= 12 && hours < 17) {
+			this.setState({
+				timeOfDay: 'afternoon'
+			})
+		} else {
+			this.setState({
+				timeOfDay: 'evening'
+			})
 		}
 	}
 
 	render() {
+		console.log(this.state.timeOfDay, '<-time of day')
 		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
 			<Grid columns={2} padded style={{ height: '100vh'}}>
@@ -33,7 +59,7 @@ class Profile extends Component {
 					</Grid.Column>
 					<Grid.Column width={8}>
 						<Header as='h2' textAlign='center'>
-							{this.props.userInfo.username}'s Coins
+							Good {this.state.timeOfDay} {this.props.userInfo.username}
 						</Header>
 					</Grid.Column>
 				</Grid.Row>
