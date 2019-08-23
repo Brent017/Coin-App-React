@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Profile from '../Profile';
 // import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
+import CollectionGrid from '../CollectionGrid'
 
 class CoinContainer extends Component {
 	constructor() {
@@ -23,7 +24,7 @@ class CoinContainer extends Component {
 	addCoin = async (coin, e) => {
 		e.preventDefault();
 		try {
-			const createCoin = await fetch('http://localhost:8000/api/v1/coin', {
+			const createCoin = await fetch('http://localhost:8000/coins/v1', {
 				method: 'POST',
 				body: JSON.stringify(coin),
 				headers: {
@@ -101,6 +102,7 @@ class CoinContainer extends Component {
 		return (
 			<div>
 				<CreateCoin addCoin={this.addCoin} />
+				<CollectionGrid />
 				<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />
 			</div>
 			)
