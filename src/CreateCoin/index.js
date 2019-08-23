@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button, Label, Input } from 'semantic-ui-react';
+import { Form, Button, Label, Input, Dropdown } from 'semantic-ui-react';
+import DropdownBox from '../DropdownBox';
 
 class CreateCoin extends Component {
 	constructor(props) {
@@ -18,6 +19,8 @@ class CreateCoin extends Component {
 		})
 	}
 
+
+
 	handleClear = () => {
 		this.setState({
 			year: '',
@@ -31,72 +34,24 @@ class CreateCoin extends Component {
 			<div>
 				<h3>Add New Coin</h3>
 				<Form form onSubmit={this.props.addCoin.bind(null, this.state)} onReset={this.handleClear} class='ui form'>
-				<div class='two fields'>
+				<div class='three fields'>
 					<div class='field'>
-						<Label>Year Minted</Label>
-						<Form.Input type='text' name='year' placeholder='1900' onChange={this.updateCoin} value={this.state.year} />
+						<Label>Year Minted: </Label>
+						<Form.Input type='text' name='year' placeholder='ie: 1900' onChange={this.updateCoin} value={this.state.year} />
 					</div>
 					<div class='field'>
 						<Label>Denomination: $</Label>
-						<Form.Input type='number' name='denomination' placeholder='0.00' onChange={this.updateCoin} value={this.state.year} />
+						<Form.Input type="number" min="0.005" max="20.00" step="any" name='denomination' placeholder='.005 - 20.00' onChange={this.updateCoin} value={this.state.denomination} />
+            <Label>Half cent -> $20</Label>
 					</div>
-					<div class="ui compact menu">
-  						<div role="listbox" aria-expanded="false" class="ui item simple dropdown" tabindex="0">
-    						<div class="text" role="alert" aria-live="polite" aria-atomic="true">Dropdown</div>
-    						<i aria-hidden="true" class="dropdown icon"></i>
-    						<div class="menu transition">
-    							<div
-        							style="pointer-events:all"
-        							role="option"
-        							aria-checked="false"
-        							aria-selected="false"
-        							class="item"
-      							>
-        							<span class="text">None - Philadelphia</span>
-      							</div>
-      							<div
-        							style="pointer-events:all"
-        							role="option"
-        							aria-checked="false"
-        							aria-selected="true"
-        							class="selected item"
-      							>
-        							<span class="text">P - Philadelphia</span>
-      							</div>
-      							<div
-        							style="pointer-events:all"
-        							role="option"
-        							aria-checked="false"
-        							aria-selected="false"
-        							class="item"
-      							>
-        							<span class="text">D - Denver</span>
-      							</div>
-      							<div
-        							style="pointer-events:all"
-        							role="option"
-        							aria-checked="false"
-        							aria-selected="false"
-        							class="item"
-      							>
-        							<span class="text">S - SanFrancisco</span>
-      							</div>
-      							<div
-        							style="pointer-events:all"
-        							role="option"
-        							aria-checked="false"
-        							aria-selected="false"
-        							class="item"
-      							>
-        							<span class="text">CC - Carson City</span>
-      							</div>
-    						</div>
-  						</div>
-					</div>
+          <div>
+            <Label>Mint Mark</Label><br/>
+            <DropdownBox onChange={this.updateCoin} value={this.state.mint_mark} />
+          </div>
 				</div>
-				<div className='centerme'>
+				<div>
 					<Button class='teal ' type='submit'>
-						Add New Coin 
+						Add Coin to Collection 
 					</Button>
 					<Button class='teal ' type='reset'>
 						Clear 
