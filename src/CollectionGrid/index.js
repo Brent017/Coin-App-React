@@ -1,7 +1,14 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
 
-const CollectionGrid = () => (
+const Coins = (props) => {
+  console.log(props, "props in CollectionGrid")
+}
+
+const CollectionGrid = (props,coin) => (
+
+  <div>
+  <button class='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button>
   <Grid columns='equal'>
     <Grid.Row>
       <Grid.Column>
@@ -27,6 +34,7 @@ const CollectionGrid = () => (
       </Grid.Column>
     </Grid.Row>
   </Grid>
+  </div>
 )
 
 export default CollectionGrid;

@@ -3,9 +3,8 @@ import CreateCoin from '../CreateCoin';
 import 'semantic-ui-css/semantic.min.css';
 import { Link } from 'react-router-dom';
 import Profile from '../Profile';
-// import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
-import CollectionGrid from '../CollectionGrid'
+import CollectionGrid from '../CollectionGrid';
 
 class CoinContainer extends Component {
 	constructor() {
@@ -13,7 +12,12 @@ class CoinContainer extends Component {
 
 		this.state = {
 			coins: [],
-			showCoinModal: false
+			showCoinModal: false,
+			coinToAdd: {
+				year: '',
+				denomination: '',
+				mint_mark: ''
+			}
 		}
 	}
 
@@ -21,14 +25,15 @@ class CoinContainer extends Component {
 		this.getCoins();
 	}
 
-	addCoin = async (coin, e) => {
-		e.preventDefault();
+	addCoin = async (coin) => {
+		
 		try {
-			const createCoin = await fetch('http://localhost:8000/coins/v1', {
+			const createCoin = await fetch('http://localhost:8000/coins/v1/', {
 				method: 'POST',
-				body: JSON.stringify(coin),
+				body: coin,
+				credentials: 'include',
 				headers: {
-					'Content-Type': 'application/json'
+					'enctype': 'multipart/form-data'
 				}
 			})
 			if(createCoin.status !==200) {
@@ -36,13 +41,29 @@ class CoinContainer extends Component {
 			}
 			const createCoinResponse = await createCoin.json();
 			// console.log(createCoinResponse.data, 'createCoinResponse data')
+			const coinToAddArray = this.state.coins.map((coin) => {
+				if(coin._id === createCoinResponse.data._id) {
+					coin = createCoinResponse.data
+				}
+				return coin
+			})
+
 			this.setState({
-				coins:[...this.state.coins, createCoinResponse.data]
+				coins: coinToAddArray,
+				showCoinModal: false
 			})
 		} catch(err) {
 			console.log(err, 'addCoin');
 			return err
 		}
+	}
+
+	showModal = (coin) => {
+		console.log(coin, '<-coin in showModal');
+		this.setState({
+			coinToAdd: coin,
+			showCoinModal: !this.state.showEditModal
+		})
 	}
 
 	getCoins = async () => {
@@ -101,8 +122,8 @@ class CoinContainer extends Component {
 	render() {
 		return (
 			<div>
-				<CreateCoin addCoin={this.addCoin} />
-				<CollectionGrid />
+				{this.state.showCoinModal ? <CreateCoin addCoin={this.addCoin} coinToAdd={this.state.coinToAdd} handleFormChange={this.handleFormChange} /> : null}
+				<CollectionGrid showModal={this.showModal} />
 				<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />
 			</div>
 			)
