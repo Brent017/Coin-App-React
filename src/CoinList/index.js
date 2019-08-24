@@ -11,16 +11,17 @@ const coinList = props.coins.map((coin) => {
 	return (
 		<div>
 		<h3>Coins in your collection</h3>
+		<div class='ui buttons mini'>
+			</div>
 		<Grid.Row key={coin._id}>
 			<Grid.Column>{coin.year}: </Grid.Column>
 			<Grid.Column>{coin.denomination}: </Grid.Column>
 			<Grid.Column>{coin.mint_mark}: </Grid.Column>
 			<Grid.Column>{coin.number_minted}: </Grid.Column>
-			<div class='ui buttons mini'>
-				<button class='ui button' onClick={props.showCoin.bind(null, coin._id)}>Detail</button>
-				<button class='ui button' onClick={props.showModal.bind(null, coin)}>Edit</button>
-				<button class='ui button' onClick={props.deleteCoin.bind(null, coin._id)}>Delete</button>
-			</div>
+			<Grid.Column>Composition </Grid.Column>
+			<Grid.Column>Melt </Grid.Column>
+			<Grid.Column>Value </Grid.Column>
+			
 		</Grid.Row>
 		</div>
 		)

@@ -26,6 +26,8 @@ class App extends Component {
       email: '',
       image: '',
       loading: true,
+      isAuth: false,
+      loggedIn: false
     }
   }
 
@@ -45,7 +47,8 @@ class App extends Component {
       this.setState(() => {
         return {
           ...parsedResponse.data,
-          loading: false
+          loading: false,
+          isAuth: true
         }
       })
 
@@ -54,6 +57,7 @@ class App extends Component {
       console.log(err);
     }
   }
+
   register = async(data) => {
     console.log(data);
     try {
@@ -71,23 +75,33 @@ class App extends Component {
 
       this.setState({
         ...parsedResponse.data,
-        loading: false
+        loading: false,
+        isAuth: true
       })
       return parsedResponse;
     } catch(err) {
       console.log(err);
     }
   }
+
+  logout = () => {
+
+    this.setState({
+      isAuth: false,
+      loggedIn: false
+    })
+  }
+
   render(){
     return (
       <main>
-        <Header />
+        {this.state.isAuth ? <Header logout={this.logout} isAuth={this.state.isAuth} /> : null}
         <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn} />} />
-            <Route exact path="/register" render={(props) => <Register {...props} register={this.register} /> } />
-            <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
-            <Route exact path="/coins" render={(props) =>  <CoinContainer {...props} userInfo={this.state}/> } />
-            <Route component={my404} />
+          <Route exact path="/register" render={(props) => <Register {...props} register={this.register} /> } />
+          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
+          <Route exact path="/coins" render={(props) =>  <CoinContainer {...props} userInfo={this.state}/> } />
+          <Route component={my404} />
         </Switch>
       </main>
       )

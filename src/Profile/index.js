@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Grid, Card, Header } from 'semantic-ui-react';
 import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
-import ReactDom from 'react-dom'
+import ReactDom from 'react-dom';
 
 
 class Profile extends Component {
