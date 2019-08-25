@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Button, Label, Input, Dropdown } from 'semantic-ui-react';
-import DropdownBox from '../DropdownBox';
+// import DropdownBox from '../DropdownBox';
+
+const options = [
+  { key: 1, text: 'None', value: 'None' },
+  { key: 2, text: 'CC', value: 'CC' },
+  { key: 3, text: 'D', value: 'D' },
+  { key: 3, text: 'P', value: 'P' },
+  { key: 3, text: 'S', value: 'S' },
+  { key: 3, text: 'W', value: 'W' },
+]
 
 class CreateCoin extends Component {
 	constructor(props) {
@@ -19,14 +28,16 @@ class CreateCoin extends Component {
 		})
 	}
 
-  handleSubmit = (e) => {
+  handleSelectChange=(e,{value})=>this.setState({mint_mark:value})
+
+  handleSubmit = (e, value) => {
     e.preventDefault();
 
     const data = new FormData();
     data.append('year', this.state.year)
     data.append('denomination', this.state.denomination)
     data.append('mint_mark', this.state.mint_mark)
-
+    console.log(this.state, 'this.state');
     this.props.addCoin(data)
   }
 
@@ -54,9 +65,11 @@ class CreateCoin extends Component {
             <Label>Half cent -> $20</Label>
 					</div>
           <div>
-            <Label>Mint Mark</Label><br/>
-            <DropdownBox onChange={this.updateCoin} value={this.state.mint_mark} />
-          </div>
+            <Form.Select fluid label='Mint Mark' 
+                          options={options}
+                          placeholder='Mint' 
+                          value={this.state.mint_mark} 
+                          onChange={this.handleSelectChange} /></div>
 				</div>
 				<div>
 					<Button class='teal ' type='submit'>

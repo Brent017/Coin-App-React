@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
 const options = [
-  { key: 1, text: 'None', value: 1 },
-  { key: 2, text: 'CC', value: 2 },
-  { key: 3, text: 'D', value: 3 },
-  { key: 3, text: 'P', value: 4 },
-  { key: 3, text: 'S', value: 5 },
-  { key: 3, text: 'W', value: 6 },
+  { key: 1, text: 'None', value: 'None' },
+  { key: 2, text: 'CC', value: 'CC' },
+  { key: 3, text: 'D', value: 'D' },
+  { key: 3, text: 'P', value: 'P' },
+  { key: 3, text: 'S', value: 'S' },
+  { key: 3, text: 'W', value: 'W' },
 ]
 
 const DropdownBox = () => (
