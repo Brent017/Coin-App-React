@@ -1,18 +1,3 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// const Header = () => {
-// 	return (
-// 		<header>
-// 			<ul>
-// 				<li><Link to='/login'>Login</Link></li>
-// 				<li><Link to='/profile'>Profile</Link></li>
-// 				<li><Link to='/coins'>My coins</Link></li>
-// 				<li><Link to='/login'>Log Out</Link></li>
-// 			</ul>
-// 		</header>
-// 		)
-// }
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';

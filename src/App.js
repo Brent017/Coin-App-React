@@ -26,8 +26,7 @@ class App extends Component {
       email: '',
       image: '',
       loading: true,
-      isAuth: false,
-      loggedIn: false
+      isAuth: false
     }
   }
 
@@ -85,10 +84,9 @@ class App extends Component {
   }
 
   logout = () => {
-
+    // window.location.reload();
     this.setState({
-      isAuth: false,
-      loggedIn: false
+      isAuth: false
     })
   }
 
