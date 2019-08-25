@@ -41,7 +41,7 @@ class CreateCoin extends Component {
 	render() {
 		return (
 			<div>
-				<h3>Add New Coin</h3>
+				<h3 style={{fontSize: "22px"}}>Add New Coin</h3>
 				<Form form onSubmit={this.handleSubmit} onReset={this.handleClear} class='ui form'>
 				<div class='three fields'>
 					<div class='field'>

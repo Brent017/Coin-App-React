@@ -9,28 +9,28 @@ const CollectionGrid = (props,coin) => (
 
   <div>
   <button class='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button>
-  <Grid columns='equal'>
+  <Grid columns={10} divided style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}}>
     <Grid.Row>
       <Grid.Column>
-        <Segment>Year</Segment>
+        Year
       </Grid.Column>
       <Grid.Column>
-        <Segment>Denom</Segment>
+        Denom
       </Grid.Column>
       <Grid.Column>
-        <Segment>Mint</Segment>
+        Mint
       </Grid.Column>
       <Grid.Column>
-        <Segment># Minted</Segment>
+        # Minted
       </Grid.Column>
       <Grid.Column>
-        <Segment>Composition</Segment>
+        Composition
       </Grid.Column>
       <Grid.Column>
-        <Segment>Melt</Segment>
+        Melt
       </Grid.Column>
       <Grid.Column>
-        <Segment>Value</Segment>
+        Value
       </Grid.Column>
     </Grid.Row>
   </Grid>
