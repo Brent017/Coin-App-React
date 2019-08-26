@@ -9,7 +9,7 @@ const CollectionGrid = (props,coin) => (
 
   <div>
   <button class='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button>
-  <Grid columns={10} divided style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}}>
+  <Grid columns={9} divided style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}}>
     <Grid.Row>
       <Grid.Column>
         Year
@@ -21,7 +21,7 @@ const CollectionGrid = (props,coin) => (
         Mint
       </Grid.Column>
       <Grid.Column>
-        # Minted
+        Mintage
       </Grid.Column>
       <Grid.Column>
         Composition

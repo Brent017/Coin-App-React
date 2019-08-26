@@ -4,6 +4,7 @@ import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
 import ReactDom from 'react-dom';
 import TimeOfDay from './tod';
+import FactFunction from './facts';
 
 class Profile extends Component {
 	constructor() {
@@ -22,7 +23,7 @@ class Profile extends Component {
 		console.log(this.state.timeOfDay, '<-time of day')
 		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
-			<Grid columns={3} padded style={{ height: '100vh'}}>
+			<Grid columns={3} padded style={{ height: '100vh', backgroundColor: 'green'}}>
 				<Grid.Row>
 					<Grid.Column width={4}>
 						{
@@ -31,14 +32,16 @@ class Profile extends Component {
 								image={'http://localhost:8000/profile_pics/' + this.props.userInfo.image}
 								header={this.props.username}
 								meta={this.props.email}
-								description='If you want a caption in Profile.index.js'
-								style={{ 'marginLeft': '5vw'}}
+								description={this.props.userInfo.username}
+								style={{ 'marginLeft': '5vw', fontSize: "30px"}}
 								/>
 						}
 					</Grid.Column>
-					<Grid.Column width={4}>
+					<Grid.Column width={8}>
 						<Header as='h2' textAlign='center'>
-							Good <TimeOfDay/> {this.props.userInfo.username}
+							Good <TimeOfDay/> {this.props.userInfo.username} <br/>
+							Did you know: <br/>
+							<FactFunction />
 						</Header>
 					</Grid.Column>
 					<Grid.Column width={4}>
@@ -50,6 +53,15 @@ class Profile extends Component {
 								style={{width: "100%", height: "350px", overflowX: "hidden"}} 
 								>
 						</iframe>
+					</Grid.Column>
+				</Grid.Row>
+				<Grid.Row>
+					<Grid.Column width={2}>
+					</Grid.Column>
+					<Grid.Column width={12} style={{textAlign: 'center'}} >
+						<FactFunction style={{color: "silver"}} />
+					</Grid.Column>
+					<Grid.Column width={2}>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
