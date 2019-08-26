@@ -121,7 +121,7 @@ class CoinContainer extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{backgroundColor: "gold"}}>
 				{this.state.showCoinModal ? <CreateCoin addCoin={this.addCoin} coinToAdd={this.state.coinToAdd} handleFormChange={this.handleFormChange} /> : null}
 				<CollectionGrid showModal={this.showModal} />
 				<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />

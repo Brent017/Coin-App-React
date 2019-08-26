@@ -3,7 +3,7 @@ import { Form, Button, Label, Input, Dropdown } from 'semantic-ui-react';
 // import DropdownBox from '../DropdownBox';
 
 const options = [
-  { key: 1, text: 'None', value: 'None' },
+  { key: 1, text: 'None', value: '' },
   { key: 2, text: 'CC', value: 'CC' },
   { key: 3, text: 'D', value: 'D' },
   { key: 3, text: 'P', value: 'P' },
@@ -62,23 +62,23 @@ class CreateCoin extends Component {
 					<div class='field'>
 						<Label>Denomination: $</Label>
 						<Form.Input type="number" min="0.005" max="20.00" step="any" name='denomination' placeholder='.005 - 20.00' onChange={this.updateCoin} value={this.state.denomination} />
-            <Label>Half cent -> $20</Label>
+            			<Label>Half cent -> $20</Label>
 					</div>
-          <div>
-            <Form.Select fluid label='Mint Mark' 
-                          options={options}
-                          placeholder='Mint' 
-                          value={this.state.mint_mark} 
-                          onChange={this.handleSelectChange} /></div>
-				</div>
-				<div>
-					<Button class='teal ' type='submit'>
-						Add Coin to Collection 
-					</Button>
-					<Button class='teal ' type='reset'>
-						Clear 
-					</Button>
-				</div>
+          			<div>
+            			<Form.Select fluid label='Mint Mark' 
+                          	options={options}
+                          	placeholder='None' 
+                          	value={this.state.mint_mark} 
+                          	onChange={this.handleSelectChange} /></div>
+					</div>
+					<div>
+						<Button class='teal ' type='submit'>
+							Add Coin to Collection 
+						</Button>
+						<Button class='teal ' type='reset'>
+							Clear 
+						</Button>
+					</div>
 				</Form>
 			</div>
 			)
