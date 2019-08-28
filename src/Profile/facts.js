@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 const FactFunction = () => {
 	const facts = [
 		'The Constitution Only Allows Coins, Not Paper Money?  The Founding Fathers didn’t trust paper money, so they didn’t authorize it. It took an act of Congress in 1862 to print paper money for permanent circulation, and except for brief periods, some types remained redeemable in gold or silver until 1971, when the last U.S. Notes were discontinued.',
-		'The U.S. Dollar was Based on a Spanish Coin?  The U.S. didn’t start minting its own coins until 1792. Until then, the Spanish silver 8-real coin, made in Mexico City (also known as “pieces of eight”), was so common that it was used as the basis for the value of the dollar. It remained legal tender in the U.S. until the mid-180',
+		'The U.S. Dollar was Based on a Spanish Coin?  The U.S. didn’t start minting its own coins until 1792. Until then, the Spanish silver 8-real coin, made in Mexico City (also known as “pieces of eight”), was so common that it was used as the basis for the value of the dollar. It remained legal tender in the U.S. until the mid-1800s',
 		'A Bit Was a Real Denomination — More or Less?  That same Spanish silver coin could easily be cut into eight parts (giving it its colloquial name) for smaller transactions. Those pieces were called bits, hence the expression “two-bits,” which was commonly used to describe one-quarter (2/8ths) of a dollar.',
 		'The Eagle was a real denomination?  The 10-dollar gold eagle, half-eagle and quarter-eagle coins were denominations specified in the Coinage Act of 1792. The double eagle $20 gold coin was created by that name in 1849.',
 		'All U.S. Coins Were Originally Gold, Silver, or Copper?  Coins originally had worth of their own, since they were made of specific amounts of precious or semi-precious metals. When the value of those metals exceeded the coins’ worth, alloys and non-precious metals were substituted. Today’s circulating coins contain no gold or silver.',

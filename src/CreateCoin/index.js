@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Label, Input, Dropdown } from 'semantic-ui-react';
+import { Form, Button, Label } from 'semantic-ui-react';
 // import DropdownBox from '../DropdownBox';
 
 const options = [
@@ -54,12 +54,12 @@ class CreateCoin extends Component {
 			<div>
 				<h3 style={{fontSize: "22px"}}>Add New Coin</h3>
 				<Form form onSubmit={this.handleSubmit} onReset={this.handleClear} class='ui form'>
-				<div class='three fields'>
-					<div class='field'>
+				<div className='three fields'>
+					<div className='field'>
 						<Label>Year Minted: </Label>
 						<Form.Input type='text' name='year' placeholder='ie: 1900' onChange={this.updateCoin} value={this.state.year} />
 					</div>
-					<div class='field'>
+					<div className='field'>
 						<Label>Denomination: $</Label>
 						<Form.Input type="number" min="0.005" max="20.00" step="any" name='denomination' placeholder='.005 - 20.00' onChange={this.updateCoin} value={this.state.denomination} />
             			<Label>Half cent -> $20</Label>
@@ -72,10 +72,10 @@ class CreateCoin extends Component {
                           	onChange={this.handleSelectChange} /></div>
 					</div>
 					<div>
-						<Button class='teal ' type='submit'>
+						<Button type='submit'>
 							Add Coin to Collection 
 						</Button>
-						<Button class='teal ' type='reset'>
+						<Button  type='reset'>
 							Clear 
 						</Button>
 					</div>

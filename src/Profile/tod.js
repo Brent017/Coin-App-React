@@ -1,5 +1,4 @@
-import React from "react"
-import ReactDOM from "react-dom"
+
 
 const TimeOfDay = () => {
   const date = new Date()
@@ -11,7 +10,7 @@ const TimeOfDay = () => {
   } else if (hours >= 12 && hours < 17) {
     timeOfDay = "afternoon"
   } else {
-    timeOfDay = "night"
+    timeOfDay = "evening"
   }
   return timeOfDay
 }

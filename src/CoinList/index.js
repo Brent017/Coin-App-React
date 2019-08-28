@@ -1,36 +1,64 @@
 import React from 'react';
-import { Form, Button, Label, Grid } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-import { Link } from 'react-router-dom';
 
 
 const Coins = (props) => {
-	console.log(props, 'props in CoinList');
+	console.log(props, '<--props in coinList');
+	console.log(props.coins, '<--props.coins in coinList');
+	console.log(props.coins.year, "coin.year in coinList");
 
-const coinList = props.coins.map((coin) => {
+	const coinList = props.coins.map((coin) => {
+
+		return (
+			<div class='ui buttons mini'>
+				<Grid stackable columns={7} divided style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}} >
+				<Grid.Row key={coin._id} >
+					<Grid.Column> 
+						<Segment>Yr:
+							{coin.year}
+						</Segment>
+					</Grid.Column>
+					<Grid.Column> 
+						<Segment>Dn:
+							{coin.denomination}
+						</Segment>
+					</Grid.Column>
+					<Grid.Column>
+						<Segment>MM:
+							{coin.mint_mark}
+						</Segment>
+					</Grid.Column>
+					<Grid.Column> 
+						<Segment>Mt:
+							{coin.number_minted}
+						</Segment>
+					</Grid.Column>
+					<Grid.Column>CP:
+						<Segment>
+							Comp
+						</Segment>
+					</Grid.Column>
+					<Grid.Column>Ml:
+						<Segment>
+							Melt
+						</Segment>
+					</Grid.Column>
+					<Grid.Column>Vl:	
+						<Segment>
+							Value
+						</Segment>
+					</Grid.Column>
+				</Grid.Row>
+				</Grid>
+			</div>
+			)
+	})
 	return (
 		<div>
-		<h3>Coins in your collection</h3>
-		<div class='ui buttons mini'>
-			</div>
-		<Grid.Row key={coin._id}>
-			<Grid.Column>{coin.year}: </Grid.Column>
-			<Grid.Column>{coin.denomination}: </Grid.Column>
-			<Grid.Column>{coin.mint_mark}: </Grid.Column>
-			<Grid.Column>{coin.number_minted}: </Grid.Column>
-			<Grid.Column>Composition </Grid.Column>
-			<Grid.Column>Melt </Grid.Column>
-			<Grid.Column>Value </Grid.Column>
-			
-		</Grid.Row>
+			{coinList}	
 		</div>
 		)
-})
-return (
-	<div>
-		{coinList}
-	</div>
-	)
 }
 
 export default Coins;
