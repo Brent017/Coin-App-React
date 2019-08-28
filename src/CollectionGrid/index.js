@@ -1,15 +1,35 @@
 import React from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 const Coins = (props) => {
   console.log(props, "props in CollectionGrid")
 }
 
-const CollectionGrid = (props,coin) => (
+const CollectionGrid = (props, coin) => (
 
   <div>
-  <button class='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button>
-  <Grid columns={9} divided style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}}>
+  <button className='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button><br/>
+  
+  <Grid columns={7} style={{fontSize: "22px", textAlign: "center", marginTop: "5%"}}>
+    <Grid.Row>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+        My Cache
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
     <Grid.Row>
       <Grid.Column>
         Year
@@ -24,7 +44,7 @@ const CollectionGrid = (props,coin) => (
         Mintage
       </Grid.Column>
       <Grid.Column>
-        Composition
+        Metals
       </Grid.Column>
       <Grid.Column>
         Melt

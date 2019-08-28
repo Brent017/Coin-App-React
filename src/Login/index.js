@@ -28,14 +28,14 @@ class Login extends Component {
     data.append('username', this.state.username)
     data.append('password', this.state.password)
 
-    console.log(data, "<-data after appending key-value");
+    // console.log(data, "<-data after appending key-value");
     const login = this.props.logIn(this.state);
 
-    for(let pair of data.entries()) {
-			console.log(pair[0], '<-key value pair');
-		}
+  //   for(let pair of data.entries()) {
+		// 	console.log(pair[0], '<-key value pair');
+		// }
 
-	console.log(data.status, 'message from server');
+	// console.log(data.status, 'message from server');
     login.then((data) => {
       if(data.status.message === 'Success!'){
         this.props.history.push('/profile')
@@ -53,7 +53,8 @@ class Login extends Component {
 			<Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
 				<Grid.Column style={{ maxWidth: 450}}>
 					<Header as='h2' textAlign='center'>
-						Login:
+						<img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' alt='1924 Saint Gaudens Double Eagle gold coin'/>
+						Coin Cache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >
 						<Segment stacked >

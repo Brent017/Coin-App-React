@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Card, Header } from 'semantic-ui-react';
 import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
-import ReactDom from 'react-dom';
 import TimeOfDay from './tod';
 import FactFunction from './facts';
 
@@ -11,7 +10,6 @@ class Profile extends Component {
 		super();
 
 		this.state = {
-			id: 1,
 			email: '',
 			image: '',
 			username: ''
@@ -20,10 +18,9 @@ class Profile extends Component {
 
 
 	render() {
-		console.log(this.state.timeOfDay, '<-time of day')
 		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
-			<Grid columns={3} padded style={{ height: '100vh', backgroundColor: 'green'}}>
+			<Grid stackable columns={3} padded style={{ height: '100vh', backgroundColor: 'green'}}>
 				<Grid.Row>
 					<Grid.Column width={4}>
 						{
@@ -33,13 +30,14 @@ class Profile extends Component {
 								header={this.props.username}
 								meta={this.props.email}
 								description={this.props.userInfo.username}
-								style={{ 'marginLeft': '5vw', fontSize: "30px"}}
+								style={{ fontSize: "30px"}}
 								/>
 						}
 					</Grid.Column>
 					<Grid.Column width={8}>
 						<Header as='h2' textAlign='center'>
 							Good <TimeOfDay/> {this.props.userInfo.username} <br/>
+							<span></span> <br/>
 							Did you know: <br/>
 							<FactFunction />
 						</Header>
@@ -53,15 +51,6 @@ class Profile extends Component {
 								style={{width: "100%", height: "350px", overflowX: "hidden"}} 
 								>
 						</iframe>
-					</Grid.Column>
-				</Grid.Row>
-				<Grid.Row>
-					<Grid.Column width={2}>
-					</Grid.Column>
-					<Grid.Column width={12} style={{textAlign: 'center'}} >
-						<FactFunction style={{color: "silver"}} />
-					</Grid.Column>
-					<Grid.Column width={2}>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

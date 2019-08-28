@@ -13,7 +13,7 @@ class Header extends Component {
     return (
       <Menu stackable>
         <Menu.Item>
-          <img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' />
+          <img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' alt='1924 St. Gaudens gold coin' />
         </Menu.Item>
 
         <Menu.Item

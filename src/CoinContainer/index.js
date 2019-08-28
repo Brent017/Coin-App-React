@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import CreateCoin from '../CreateCoin';
 import 'semantic-ui-css/semantic.min.css';
-import { Link } from 'react-router-dom';
-import Profile from '../Profile';
 import CoinList from '../CoinList';
 import CollectionGrid from '../CollectionGrid';
 
@@ -11,12 +9,13 @@ class CoinContainer extends Component {
 		super();
 
 		this.state = {
-			coins: [],
+			id: '',
 			showCoinModal: false,
 			coinToAdd: {
 				year: '',
 				denomination: '',
-				mint_mark: ''
+				mint_mark: '',
+				number_minted: ''
 			}
 		}
 	}
@@ -38,24 +37,29 @@ class CoinContainer extends Component {
 			})
 			if(createCoin.status !==200) {
 				throw Error('404 from server')
+				console.log(createCoin.status, 'createCoin.status');
 			}
 			const createCoinResponse = await createCoin.json();
-			// console.log(createCoinResponse.data, 'createCoinResponse data')
-			const coinToAddArray = this.state.coins.map((coin) => {
-				if(coin._id === createCoinResponse.data._id) {
-					coin = createCoinResponse.data
-				}
-				return coin
-			})
+			// console.log(createCoinResponse, '<--createCoinResponse');
+			// console.log(createCoinResponse.data, '<--createCoinResponse data')
+			// const coinToAdd = this.state.coins.map((coin) => {
+			// 	if(coin._id === createCoinResponse.data._id) {
+			// 		coin = createCoinResponse.data
+			// 	}
+			// 	return coin
+			// })
 
 			this.setState({
-				coins: coinToAddArray,
+				coins: [...this.state.coins, createCoinResponse.data],
 				showCoinModal: false
+				
 			})
+			// console.log(this.state.coins, '<---coins array');
 		} catch(err) {
-			console.log(err, 'addCoin');
+			console.log(err, 'addCoin error');
 			return err
 		}
+		// console.log(this.state.coins, '<---coins array');
 	}
 
 	showModal = (coin) => {
@@ -68,15 +72,17 @@ class CoinContainer extends Component {
 
 	getCoins = async () => {
 		try {
-			const responseGetCoins = await fetch('http://localhost:8000/coins/v1')
+			console.log(this.props, 'props in get');
+			const responseGetCoins = await fetch('http://localhost:8000/coins/v1/' + this.props.userInfo.id)
+			
 			console.log(responseGetCoins, 'responseGetCoins');
 			if(responseGetCoins.status !== 200) {
 				throw Error('404 from server')
 			}
 			const coinsResponse = await responseGetCoins.json();
-			console.log(coinsResponse, '<-coinsResponse');
+			console.log(await coinsResponse, '<-coinsResponse');
 			this.setState({
-				coins: [...coinsResponse.data]
+				coins: coinsResponse.data
 			});
 		} catch(err) {
 			console.log(err, 'err from getCoins');
@@ -121,10 +127,14 @@ class CoinContainer extends Component {
 
 	render() {
 		return (
-			<div style={{backgroundColor: "gold"}}>
+			<div style={{backgroundColor: "gold"}} >
 				{this.state.showCoinModal ? <CreateCoin addCoin={this.addCoin} coinToAdd={this.state.coinToAdd} handleFormChange={this.handleFormChange} /> : null}
 				<CollectionGrid showModal={this.showModal} />
-				<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />
+				{	this.state.coins ?
+						<CoinList coins={this.state.coins} getCoins={this.getCoins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />
+					:
+						null
+				}
 			</div>
 			)
 	}
