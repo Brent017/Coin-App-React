@@ -3,6 +3,8 @@ import CreateCoin from '../CreateCoin';
 import 'semantic-ui-css/semantic.min.css';
 import CoinList from '../CoinList';
 import CollectionGrid from '../CollectionGrid';
+import EditCoin from '../EditCoin';
+import './style.css';
 
 class CoinContainer extends Component {
 	constructor() {
@@ -10,12 +12,21 @@ class CoinContainer extends Component {
 
 		this.state = {
 			id: '',
+			coins: [],
 			showCoinModal: false,
+			showEditModal: false,
 			coinToAdd: {
 				year: '',
 				denomination: '',
 				mint_mark: '',
 				number_minted: ''
+			},
+			editCoinId: null,
+			coinToEdit: {
+				id: '',
+				year: '',
+				denomination: '',
+				mint_mark: '',
 			}
 		}
 	}
@@ -40,14 +51,6 @@ class CoinContainer extends Component {
 				console.log(createCoin.status, 'createCoin.status');
 			}
 			const createCoinResponse = await createCoin.json();
-			// console.log(createCoinResponse, '<--createCoinResponse');
-			// console.log(createCoinResponse.data, '<--createCoinResponse data')
-			// const coinToAdd = this.state.coins.map((coin) => {
-			// 	if(coin._id === createCoinResponse.data._id) {
-			// 		coin = createCoinResponse.data
-			// 	}
-			// 	return coin
-			// })
 
 			this.setState({
 				coins: [...this.state.coins, createCoinResponse.data],
@@ -76,11 +79,11 @@ class CoinContainer extends Component {
 			const responseGetCoins = await fetch('http://localhost:8000/coins/v1/' + this.props.userInfo.id)
 			
 			console.log(responseGetCoins, 'responseGetCoins');
-			if(responseGetCoins.status !== 200) {
-				throw Error('404 from server')
-			}
 			const coinsResponse = await responseGetCoins.json();
 			console.log(await coinsResponse, '<-coinsResponse');
+			if(coinsResponse.status.code !== 200) {
+				throw Error('404 from server')
+			}
 			this.setState({
 				coins: coinsResponse.data
 			});
@@ -99,11 +102,55 @@ class CoinContainer extends Component {
 		})
 	}
 
-	showCoin = (coin) => {
-		console.log(coin, 'coin in showCoin');
+	handleEditChange = (e) => {
 		this.setState({
-			coinToShow: coin,
-			showCoinModal: !this.state.showCoinModal
+			coinToEdit: {
+				...this.state.coinToEdit,
+				[e.target.name]: e.target.value
+			}
+		})
+	}
+
+	updateCoin = async (coin) => {
+		console.log('coin in updateCoin: ', coin)
+		try {
+			const editRequest = await fetch('http://localhost:8000/coins/v1/' + coin.id, {
+				method: 'PUT',
+				body: JSON.stringify(coin),
+				credentials: 'include',
+				headers: {
+					// 'enctype': 'multipart/form-data'
+					'Content-type': 'application/json'
+				}
+			})
+			console.log(editRequest, 'editRequest');
+			
+			const editResponse = await editRequest.json();
+			console.log('editResponse: ', editResponse)
+			if(editResponse.status.code !== 200) {
+				throw Error('edit request not working')
+			}
+			const editedCoinArray = this.state.coins.map((coin) => {
+				if(coin === editResponse.data.id) {
+					coin = editResponse.data
+				}
+				return coin
+			});
+			this.setState({
+				coins: [...this.state.coins, editResponse.data],
+				showEditModal: false
+			})
+		} catch(err) {
+			console.log(err, 'error editCoin');
+			return err
+		}
+
+	}
+
+	editCoin = (coin) => {
+		this.setState({
+			coinToEdit: {...coin},
+			showEditModal: true
 		})
 	}
 
@@ -117,21 +164,30 @@ class CoinContainer extends Component {
 			}
 			const deleteCoinJson = await deleteCoin.json();
 			this.setState({
-				coins: this.state.coins.filter((coin) => coin._id !== id)
+				coins: this.state.coins.filter((coin) => coin.id !== id)
 			})
 		} catch(err) {
-			console.log(err);
+			console.log(err, 'error in delete');
 			return err
 		}
 	}
 
 	render() {
 		return (
-			<div style={{backgroundColor: "gold"}} >
-				{this.state.showCoinModal ? <CreateCoin addCoin={this.addCoin} coinToAdd={this.state.coinToAdd} handleFormChange={this.handleFormChange} /> : null}
+			<div className='CoinContainer' >
+				{this.state.showCoinModal ? 
+					<CreateCoin addCoin={this.addCoin} coinToAdd={this.state.coinToAdd} handleFormChange={this.handleFormChange} /> 
+					: 
+						null
+				}
 				<CollectionGrid showModal={this.showModal} />
+				{	this.state.showEditModal ? 
+					<EditCoin updateCoin={this.updateCoin} coinToEdit={this.state.coinToEdit} /> 
+					: 
+						null
+				}
 				{	this.state.coins ?
-						<CoinList coins={this.state.coins} getCoins={this.getCoins} deleteCoin={this.deleteCoin} showCoin={this.showCoin} />
+					<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} editCoin={this.editCoin} />
 					:
 						null
 				}

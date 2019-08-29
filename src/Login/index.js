@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 class Login extends Component {
 	constructor() {
@@ -50,10 +51,9 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
+			<Grid className='login' textAlign='center' verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450}}>
-					<Header as='h2' textAlign='center'>
-						<img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' alt='1924 Saint Gaudens Double Eagle gold coin'/>
+					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas'}} as='h2' textAlign='center'>
 						Coin Cache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >

@@ -6,9 +6,10 @@ const options = [
   { key: 1, text: 'None', value: '' },
   { key: 2, text: 'CC', value: 'CC' },
   { key: 3, text: 'D', value: 'D' },
-  { key: 3, text: 'P', value: 'P' },
-  { key: 3, text: 'S', value: 'S' },
-  { key: 3, text: 'W', value: 'W' },
+  { key: 4, text: 'P', value: 'P' },
+  { key: 5, text: 'S', value: 'S' },
+  { key: 6, text: 'W', value: 'W' },
+  { key: 7, text: 'O', value: 'O' }
 ]
 
 class CreateCoin extends Component {
