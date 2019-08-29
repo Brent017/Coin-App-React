@@ -4,6 +4,7 @@ import CreateCoin from '../CreateCoin';
 import CoinList from '../CoinList';
 import TimeOfDay from './tod';
 import FactFunction from './facts';
+import './style.css';
 
 class Profile extends Component {
 	constructor() {
@@ -20,7 +21,7 @@ class Profile extends Component {
 	render() {
 		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
-			<Grid stackable columns={3} padded style={{ height: '100vh', backgroundColor: 'green'}}>
+			<Grid stackable columns={3} padded className='Profile'>
 				<Grid.Row>
 					<Grid.Column width={4}>
 						{
@@ -35,7 +36,7 @@ class Profile extends Component {
 						}
 					</Grid.Column>
 					<Grid.Column width={8}>
-						<Header as='h2' textAlign='center'>
+						<Header className='Profile' as='h2' textAlign='center'>
 							Good <TimeOfDay/> {this.props.userInfo.username} <br/>
 							<span></span> <br/>
 							Did you know: <br/>

@@ -1,0 +1,10 @@
+.Profile {
+	background-image: linear-gradient(#1F8C13, #31D81E);
+	font-size: 20px;
+}
+
+.header {
+	font-size: 28px;
+	color: gold;
+	font-weight: bold;
+}
