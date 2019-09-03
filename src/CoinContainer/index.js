@@ -38,7 +38,7 @@ class CoinContainer extends Component {
 	addCoin = async (coin) => {
 		
 		try {
-			const createCoin = await fetch('http://localhost:8000/coins/v1/', {
+			const createCoin = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/', {
 				method: 'POST',
 				body: coin,
 				credentials: 'include',
@@ -77,7 +77,7 @@ class CoinContainer extends Component {
 	getCoins = async () => {
 		try {
 			console.log(this.props, 'props in get');
-			const responseGetCoins = await fetch('http://localhost:8000/coins/v1/' + this.props.userInfo.id)
+			const responseGetCoins = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.props.userInfo.id)
 			
 			console.log(responseGetCoins, 'responseGetCoins');
 			const coinsResponse = await responseGetCoins.json();
@@ -115,7 +115,7 @@ class CoinContainer extends Component {
 	updateCoin = async (coin) => {
 		console.log('coin in updateCoin: ', coin)
 		try {
-			const editRequest = await fetch('http://localhost:8000/coins/v1/' + coin.id, {
+			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + coin.id, {
 				method: 'PUT',
 				body: JSON.stringify(coin),
 				credentials: 'include',
@@ -157,7 +157,7 @@ class CoinContainer extends Component {
 
 	deleteCoin = async (id) => {
 		try {
-			const deleteCoin = await fetch('http://localhost:8000/coins/v1/' + id, {
+			const deleteCoin = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + id, {
 				method: 'DELETE'
 			})
 			if(deleteCoin.status !== 200) {
