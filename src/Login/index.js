@@ -53,7 +53,7 @@ class Login extends Component {
 		return (
 			<Grid className='login' textAlign='center' verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450}}>
-					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas'}} as='h2' textAlign='center'>
+					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas', textShadow: '2px 2px #ffffff'}} as='h2' textAlign='center'>
 						Coin Cache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >

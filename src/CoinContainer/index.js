@@ -51,9 +51,10 @@ class CoinContainer extends Component {
 				console.log(createCoin.status, 'createCoin.status');
 			}
 			const createCoinResponse = await createCoin.json();
-
+			console.log(createCoinResponse.data, "Coin DATAAAA");
 			this.setState({
-				coins: [...this.state.coins, createCoinResponse.data],
+				// coins: [...this.state.coins, createCoinResponse.data],
+				coins: createCoinResponse.data,
 				showCoinModal: false
 				
 			})
