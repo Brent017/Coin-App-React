@@ -3,21 +3,28 @@ import { Grid, Segment, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 const Coins = (props) => {
-	
 	const composition = (coin) => {
-		if(coin.denomination === .25 || .10 || .50 && coin.year < 1965) {
-			return '90% Silver, 10% Copper'
-		} else if(coin.denomination === .01 && coin.year < 1982) {
-			return '95% Copper'
-		} else if(coin.denomination === .50 && coin.year > 1965 && coin.year < 1971) {
-			return '40% Silver, 60% Copper'
-		} else if(coin.denomination === 1 && coin.year < 1936) {
-			return '90% Silver, 10% Copper'
-		} else if(coin.denomination === 1 && coin.year > 1970 && coin.year < 1977) {
-			return '40% Silver, 60% Copper'
-		} else if(coin.denomination === .05 && coin.year > 1941 && coin.year < 1946) {
-			return '35% Silver, 56% Copper'
+		console.log(coin, "Coinnnnn");
+		const coindb = coin.coindb
+
+		console.log(coindb.denomination, '<--Coin denomination in composition function');
+		let string = '';
+		if(coindb.denomination === .25 || coindb.denomination === .10 || coindb.denomination === .50 && coindb.year < 1965) {
+			string = '90% Silver, 10% Copper'
+		} else if(coindb.denomination === .01 && coindb.year < 1982) {
+			string = '95% Copper'
+		} else if(coindb.denomination === .50 && coindb.year > 1965 && coindb.year < 1971) {
+			string = '40% Silver, 60% Copper'
+		} else if(coindb.denomination === 1 && coindb.year < 1936) {
+			string = '90% Silver, 10% Copper'
+		} else if(coindb.denomination === 1 && coindb.year > 1970 && coindb.year < 1977) {
+			string = '40% Silver, 60% Copper'
+		} else if(coindb.denomination === .05 && coindb.year > 1941 && coindb.year < 1946) {
+			string = '35% Silver, 56% Copper'
+		} else {
+			string = 'Not listed';
 		}
+		return string;
 	}
 
 	const coinList = props.coins.map((coin) => {
