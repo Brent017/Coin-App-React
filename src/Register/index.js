@@ -61,7 +61,6 @@ class Register extends Component {
 			<Grid className='login' textAlign='center' verticalAlign='middle' style={{ height: '100vh'}} >
 				<Grid.Column style={{ maxWidth: 450 }} >
 					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas'}} as='h2' textAlign='center' >
-						<img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' alt='1924 Saint Gaudens Double Eagle gold coin'/>
 						Coin Cache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >
@@ -76,7 +75,7 @@ class Register extends Component {
 						<Form.Input fluid icon='image' iconPosition='left' type='file' name='image' onChange={this.handleChange} />
 						<Button fluid size='large' type='submit'>Register</Button>
 						<Message>
-							Already A Member? <Link to='/login'>Login</Link>
+							Already A Member? <Link to='/'>Login</Link>
 						</Message>
 						</Segment>
 					</Form>

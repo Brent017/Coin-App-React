@@ -17,7 +17,7 @@ class Header extends Component {
         </Menu.Item>
 
         <Menu.Item
-          as={Link} to='login'
+          as={Link} to=''
           name='login'
           active={activeItem === 'login'}
           onClick={this.handleItemClick}
