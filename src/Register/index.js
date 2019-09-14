@@ -60,7 +60,7 @@ class Register extends Component {
 		return (
 			<Grid className='login' textAlign='center' verticalAlign='middle' style={{ height: '100vh'}} >
 				<Grid.Column style={{ maxWidth: 450 }} >
-					<Header className='title' tyle={{fontSize: '80px', fontStyle: 'Consolas'}} as='h2' textAlign='center' >
+					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas'}} as='h2' textAlign='center' >
 						<img src='https://vignette.wikia.nocookie.net/pawnstarsthegame/images/0/05/1924_Saint-Gaudens_Double_Eagle_Gold_Coin.png/revision/latest?cb=20160420000935' alt='1924 Saint Gaudens Double Eagle gold coin'/>
 						Coin Cache
 					</Header>

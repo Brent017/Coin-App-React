@@ -27,7 +27,7 @@ class Profile extends Component {
 						{
 							this.props.userInfo.loading ? 'Loading...' :
 							<Card
-								image={process.env.REACT_APP_BACKEND_URL + '/profile_pics/' + this.props.userInfo.image}
+								image={process.env.REACT_APP_BACKEND_URL + '/static/profile_pics/' + this.props.userInfo.image}
 								header={this.props.username}
 								meta={this.props.email}
 								description={this.props.userInfo.username}
