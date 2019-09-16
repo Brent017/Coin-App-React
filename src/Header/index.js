@@ -45,8 +45,8 @@ class Header extends Component {
 
         <Menu.Item
           as={Link} to=''
-          name='logout'
-          active={activeItem === 'logout'}
+          name='login'
+          active={activeItem === 'login'}
           onClick={this.handleItemClick}
         >
           Sign Out
