@@ -23,7 +23,7 @@ class Login extends Component {
 	handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(this.state.email);
+    console.log(this.state.username);
 
     const data = new FormData()
     data.append('username', this.state.username)
