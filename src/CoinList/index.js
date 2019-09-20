@@ -3,7 +3,7 @@ import { Grid, Segment, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 const Coins = (props) => {
-
+	let totalMelt = 0;
 	const meltValue = (coin) => {
 		const coindb = coin.coindb
 		let silver = 17.80;
@@ -31,14 +31,15 @@ const Coins = (props) => {
 			melt = (copper * lbToGram * 6.22 * .95)
 		}
 		let value = Math.round(100*melt)/100
-		return '$'+value
+		totalMelt = totalMelt + value;
+		return value
 	}
 
 	const composition = (coin) => {
-		console.log(coin, "Coinnnnn");
+		// console.log(coin, "Coinnnnn");
 		const coindb = coin.coindb
 
-		console.log(coindb.denomination, '<--Coin denomination in composition function');
+		// console.log(coindb.denomination, '<--Coin denomination in composition function');
 		let string = '';
 		if(coindb.denomination === .25 || coindb.denomination === .10 || coindb.denomination === .50 && coindb.year < 1965) {
 			string = '90% Silver, 10% Copper'
@@ -59,16 +60,17 @@ const Coins = (props) => {
 		}
 		return string;
 	}
+	
 
 	const coinList = props.coins.map((coin) => {
 		return (
 			<Grid stackable columns={2}>
 				<Grid.Row>
-					<Grid.Column width={12}>
+					<Grid.Column width={15}>
 						<div className="ui cards">
   							<div className="ui red fluid card">
     							<div className="content">
-    								<div key={coin.id} className="header">Date: {coin.year} | $ {coin.denomination} | {coin.mint_mark} | Comp: {composition(coin)} | Melt: {meltValue(coin)} | 
+    								<div key={coin.id} className="header melt">Date: {coin.year} | $ {coin.denomination} | {coin.mint_mark} | Comp: {composition(coin)} | Melt: ${meltValue(coin)} | 
     									<Button className="ui button" onClick={props.deleteCoin.bind(null, coin.id)} basic color='red'>
             								Remove
           								</Button>
@@ -80,7 +82,7 @@ const Coins = (props) => {
   							</div>
   						</div>
   					</Grid.Column>
-  					<Grid.Column width={4}>
+  					<Grid.Column width={1}>
 						
 					</Grid.Column>
 				</Grid.Row>
@@ -90,7 +92,12 @@ const Coins = (props) => {
 
 	return (
 		<div>
-			{coinList}	
+			<div>
+				<h1>Total Melt Value of your cache ${totalMelt}</h1>
+			</div>
+			<div>
+				{coinList}	
+			</div>
 		</div>
 	)
 }
