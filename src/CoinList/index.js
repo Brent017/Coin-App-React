@@ -3,11 +3,15 @@ import { Grid, Segment, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 const Coins = (props) => {
+	
 	let totalMelt = 0;
+	let silver = props.silverMelt
+	// console.log(props.silverMelt, 'props.silverMelt');
+	let copper = 2.6151;
+	let gold = 1517.90
+	
 	const meltValue = (coin) => {
 		const coindb = coin.coindb
-		let silver = 17.80;
-		let copper = 2.6151;
 		let melt = 0;
 		const ozToGram = .0321507466
 		const lbToGram = .00220462262
@@ -29,10 +33,24 @@ const Coins = (props) => {
 			melt = (silver * ozToGram * 5 * .35) + (copper * lbToGram * 5 * .56)
 		} else if(coindb.denomination === .02) {
 			melt = (copper * lbToGram * 6.22 * .95)
+		} else if(coindb.denomination === .03 && coindb.year < 1854) {
+			melt = (silver * ozToGram * .8 * .75) + (copper * lbToGram * 12.3 * .25)
+		} else if(coindb.denomination === .03 && coindb.year > 1853 && coindb.year < 1865) {
+			melt = (silver * ozToGram * .75 * .9) + (copper * lbToGram * 11.6 * .1) 
+		} else if(coindb.denomination === .03 && coindb.year > 1864) {
+			melt = (copper * lbToGram * 1.94 * .75)
+		} else if(coindb.denomination === 2.50) {
+			melt = (gold * ozToGram * 4.18 * .9) + (copper * lbToGram * 4.18 * .1)
+		} else if(coindb.denomination === 5.00) {
+			melt = (gold * ozToGram * 8.359 * .9) + (copper * lbToGram * 8.359 * .1)
+		} else if(coindb.denomination === 10.00) {
+			melt = (gold * ozToGram * 16.718 * .9) + (copper * lbToGram * 16.718 * .1)
+		} else if(coindb.denomination === 20.00) {
+			melt = (gold * ozToGram * 33.4362 * .9) + (copper * lbToGram * 33.4362 * .1)
 		}
 		let value = Math.round(100*melt)/100
-		totalMelt = totalMelt + value;
-		return value
+		totalMelt = Math.round(100*totalMelt)/100 + value;
+		return value.toFixed(2)
 	}
 
 	const composition = (coin) => {
@@ -44,7 +62,7 @@ const Coins = (props) => {
 		if(coindb.denomination === .25 || coindb.denomination === .10 || coindb.denomination === .50 && coindb.year < 1965) {
 			string = '90% Silver, 10% Copper'
 		} else if(coindb.denomination === .01 && coindb.year < 1982) {
-			string = '95% Copper'
+			string = '95% Copper, 5% Zinc'
 		} else if(coindb.denomination === .50 && coindb.year > 1965 && coindb.year < 1971) {
 			string = '40% Silver, 60% Copper'
 		} else if(coindb.denomination === 1 && coindb.year < 1936) {
@@ -54,14 +72,21 @@ const Coins = (props) => {
 		} else if(coindb.denomination === .05 && coindb.year > 1941 && coindb.year < 1946) {
 			string = '35% Silver, 56% Copper'
 		} else if(coindb.denomination === .02) {
-			string = '95% copper'
+			string = '95% Copper, 5% Tin/Zinc'
+		} else if(coindb.denomination === .03 && coindb.year < 1854) {
+			string = '75% Silver, 25% Copper'
+		} else if(coindb.denomination === .03 && coindb.year > 1853 && coindb.year < 1865) {
+			string = '90% Silver, 10% Copper'
+		} else if(coindb.denomination === .03 && coindb.year > 1864) {
+			string = '75% Copper, 25% Nickel'
+		} else if(coindb.denomination === 2.50 || coindb.denomination === 5.00 || coindb.denomination === 10.00 || coindb.denomination === 20.00) {
+			string = '90% Gold, 10% Copper'
 		} else {
 			string = 'Not listed';
 		}
 		return string;
 	}
 	
-
 	const coinList = props.coins.map((coin) => {
 		return (
 			<Grid stackable columns={2}>
@@ -93,7 +118,7 @@ const Coins = (props) => {
 	return (
 		<div>
 			<div>
-				<h1>Total Melt Value of your cache ${totalMelt}</h1>
+				<h1>Total melt value is ${totalMelt.toFixed(2)}</h1>
 			</div>
 			<div>
 				{coinList}	

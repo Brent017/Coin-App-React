@@ -15,6 +15,7 @@ class CoinContainer extends Component {
 			coins: [],
 			showCoinModal: false,
 			showEditModal: false,
+			silverMelt: null,
 			coinToAdd: {
 				year: '',
 				denomination: '',
@@ -33,6 +34,7 @@ class CoinContainer extends Component {
 
 	componentDidMount() {
 		this.getCoins();
+		this.getSilverValue();
 	}
 
 	addCoin = async (coin) => {
@@ -74,14 +76,34 @@ class CoinContainer extends Component {
 		})
 	}
 
+	getSilverValue = async () => {
+		try {
+			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_SI1', {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json'
+				}
+			})
+			const meltJson = await melt.json();
+			// console.log(meltJson.dataset.data[0][2], "MELT JSON");
+
+			this.setState({
+				silverMelt: meltJson.dataset.data[0][2]
+			})
+		} catch(err) {
+			console.log(err, 'getSilverValue error');
+			return err;
+		}
+	}
+
 	getCoins = async () => {
 		try {
-			console.log(this.props, 'props in get');
+			// console.log(this.props, 'props in get');
 			const responseGetCoins = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.props.userInfo.id)
 			
-			console.log(responseGetCoins, 'responseGetCoins');
+			// console.log(responseGetCoins, 'responseGetCoins');
 			const coinsResponse = await responseGetCoins.json();
-			console.log(await coinsResponse, '<-coinsResponse');
+			// console.log(await coinsResponse, '<-coinsResponse');
 			if(coinsResponse.status.code !== 200) {
 				throw Error('404 from server')
 			}
@@ -188,7 +210,7 @@ class CoinContainer extends Component {
 						null
 				}
 				{	this.state.coins ?
-					<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} editCoin={this.editCoin} />
+					<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} editCoin={this.editCoin} silverMelt={this.state.silverMelt} />
 					:
 						null
 				}
