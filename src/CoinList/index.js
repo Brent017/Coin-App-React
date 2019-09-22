@@ -6,9 +6,9 @@ const Coins = (props) => {
 	
 	let totalMelt = 0;
 	let silver = props.silverMelt
-	console.log(props.copperMelt, 'props.copperMelt');
+	// console.log(props.copperMelt, 'props.copperMelt');
 	let copper = props.copperMelt;
-	let gold = 1517.90
+	let gold = props.goldMelt;
 	
 	const meltValue = (coin) => {
 		const coindb = coin.coindb
@@ -23,6 +23,8 @@ const Coins = (props) => {
 			melt = (silver * ozToGram * 12.5 * .9) + (copper * lbToGram * 12.5 * .1)
 		} else if(coindb.denomination === .50 && coindb.year > 1964 && coindb.year < 1971) {
 			melt = (silver * ozToGram * 11.5 * .4) + (copper * lbToGram * 11.5 * .6)
+		} else if(coindb.denomination === .50 && coindb.year > 1970) {
+			melt = (copper * lbToGram * 11.34 * .75)
 		} else if(coindb.denomination === .01 && coindb.year < 1982 && coindb.year > 1863 && coindb.year !== 1943) {
 			melt = (copper * lbToGram * 3.11 * .95)
 		} else if(coindb.denomination === 1.00 && coindb.year < 1936 && coindb.year > 1877) {
@@ -63,8 +65,10 @@ const Coins = (props) => {
 			string = '90% Silver, 10% Copper'
 		} else if(coindb.denomination === .01 && coindb.year < 1982) {
 			string = '95% Copper, 5% Zinc'
-		} else if(coindb.denomination === .50 && coindb.year > 1965 && coindb.year < 1971) {
+		} else if(coindb.denomination === .50 && coindb.year > 1964 && coindb.year < 1971) {
 			string = '40% Silver, 60% Copper'
+		} else if(coindb.denomination === .50 && coin.year === 1964) {
+			string = '90% Silver, 10% Copper'
 		} else if(coindb.denomination === 1 && coindb.year < 1936) {
 			string = '90% Silver, 10% Copper'
 		} else if(coindb.denomination === 1 && coindb.year > 1970 && coindb.year < 1977) {
