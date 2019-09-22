@@ -16,6 +16,7 @@ class CoinContainer extends Component {
 			showCoinModal: false,
 			showEditModal: false,
 			silverMelt: null,
+			copperMelt: null,
 			coinToAdd: {
 				year: '',
 				denomination: '',
@@ -35,6 +36,7 @@ class CoinContainer extends Component {
 	componentDidMount() {
 		this.getCoins();
 		this.getSilverValue();
+		this.getCopperValue();
 	}
 
 	addCoin = async (coin) => {
@@ -92,6 +94,25 @@ class CoinContainer extends Component {
 			})
 		} catch(err) {
 			console.log(err, 'getSilverValue error');
+			return err;
+		}
+	}
+
+	getCopperValue = async () => {
+		try {
+			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_HG1', {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json'
+				}
+			})
+			const meltJson = await melt.json();
+
+			this.setState({
+				copperMelt: meltJson.dataset.data[0][2]
+			})
+		} catch(err) {
+			console.log(err, 'getCopperValue error');
 			return err;
 		}
 	}
@@ -210,7 +231,7 @@ class CoinContainer extends Component {
 						null
 				}
 				{	this.state.coins ?
-					<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} editCoin={this.editCoin} silverMelt={this.state.silverMelt} />
+					<CoinList coins={this.state.coins} deleteCoin={this.deleteCoin} editCoin={this.editCoin} silverMelt={this.state.silverMelt} copperMelt={this.state.copperMelt} />
 					:
 						null
 				}
