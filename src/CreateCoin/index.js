@@ -19,7 +19,8 @@ class CreateCoin extends Component {
 		this.state = {
 			year: '',
 			denomination: '',
-			mint_mark: ''
+			mint_mark: '',
+			num_value: null
 		}
 	}
 
@@ -38,6 +39,7 @@ class CreateCoin extends Component {
     data.append('year', this.state.year)
     data.append('denomination', this.state.denomination)
     data.append('mint_mark', this.state.mint_mark)
+    data.append('num_value', this.state.num_value)
     console.log(this.state, 'this.state');
     this.props.addCoin(data)
   }
@@ -46,7 +48,8 @@ class CreateCoin extends Component {
 		this.setState({
 			year: '',
 			denomination: '',
-			mint_mark: ''
+			mint_mark: '',
+			num_value: null
 		})
 	}
 
@@ -71,6 +74,10 @@ class CreateCoin extends Component {
                           	placeholder='None' 
                           	value={this.state.mint_mark} 
                           	onChange={this.handleSelectChange} /></div>
+					</div>
+					<div className='field'>
+						<Label>Numismatic Value: $</Label>
+						<Form.Input type='number' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
 					</div>
 					<div>
 						<Button type='submit'>

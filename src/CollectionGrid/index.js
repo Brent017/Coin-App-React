@@ -19,7 +19,7 @@ const CollectionGrid = (props, coin) => (
       <Grid.Column>
       </Grid.Column>
       <Grid.Column>
-        My Cache
+        <h1>My Cache</h1>
       </Grid.Column>
       <Grid.Column>
       </Grid.Column>
