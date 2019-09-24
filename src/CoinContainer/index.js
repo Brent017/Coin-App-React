@@ -18,6 +18,7 @@ class CoinContainer extends Component {
 			silverMelt: null,
 			copperMelt: null,
 			goldMelt: null,
+			totalNumismatic: null,
 			coinToAdd: {
 				year: '',
 				denomination: '',
@@ -30,6 +31,7 @@ class CoinContainer extends Component {
 				year: '',
 				denomination: '',
 				mint_mark: '',
+				num_value: ''
 			}
 		}
 	}
@@ -39,6 +41,21 @@ class CoinContainer extends Component {
 		this.getSilverValue();
 		this.getCopperValue();
 		this.getGoldValue();
+	}
+
+	numismaticValue = () => {
+		let totalNumismatic = 0;
+		const coin = this.state.coins
+		console.log(coin[0].num_value, '<-- coin.data');
+		for(let i = 0; i < coin.length; i++) {
+			if(coin[i].num_val !== null) {
+				totalNumismatic += parseInt(coin[i].num_value)
+			}
+		}
+		this.setState({
+			totalNumismatic: totalNumismatic
+		})
+		console.log(this.state.totalNumismatic, 'totalNumismatic');
 	}
 
 	addCoin = async (coin) => {
@@ -69,6 +86,7 @@ class CoinContainer extends Component {
 			console.log(err, 'addCoin error');
 			return err
 		}
+		this.getCoins();
 		// console.log(this.state.coins, '<---coins array');
 	}
 
@@ -145,7 +163,7 @@ class CoinContainer extends Component {
 			
 			// console.log(responseGetCoins, 'responseGetCoins');
 			const coinsResponse = await responseGetCoins.json();
-			// console.log(await coinsResponse, '<-coinsResponse');
+			console.log(await coinsResponse, '<-coinsResponse');
 			if(coinsResponse.status.code !== 200) {
 				throw Error('404 from server')
 			}
@@ -156,6 +174,7 @@ class CoinContainer extends Component {
 			console.log(err, 'err from getCoins');
 			return err
 		}
+		this.numismaticValue();
 	}
 
 	handleFormChange = (e) => {
@@ -235,6 +254,7 @@ class CoinContainer extends Component {
 			console.log(err, 'error in delete');
 			return err
 		}
+		this.getCoins();
 	}
 
 	render() {
@@ -263,7 +283,8 @@ class CoinContainer extends Component {
 						editCoin={this.editCoin} 
 						silverMelt={this.state.silverMelt} 
 						copperMelt={this.state.copperMelt} 
-						goldMelt={this.state.goldMelt} />
+						goldMelt={this.state.goldMelt}
+						totalNumismatic={this.state.totalNumismatic} />
 					:
 						null
 				}

@@ -5,11 +5,14 @@ import 'semantic-ui-css/semantic.min.css';
 const Coins = (props) => {
 	
 	let totalMelt = 0;
+	let totalNumismatic = props.totalNumismatic;
 	let silver = props.silverMelt
 	// console.log(props.copperMelt, 'props.copperMelt');
 	let copper = props.copperMelt;
 	let gold = props.goldMelt;
 	
+	
+
 	const meltValue = (coin) => {
 		const coindb = coin.coindb
 		let melt = 0;
@@ -99,7 +102,7 @@ const Coins = (props) => {
 						<div className="ui cards">
   							<div className="ui red fluid card">
     							<div className="content">
-    								<div key={coin.id} className="header melt">Date: {coin.year} | $ {coin.denomination} | {coin.mint_mark} | Comp: {composition(coin)} | Melt: ${meltValue(coin)} | 
+    								<div key={coin.id} className="header melt">Date: {coin.year} | Face: $ {coin.denomination} | Mint: {coin.mint_mark} | Comp: {composition(coin)} | Melt: ${meltValue(coin)} | Numismatic Value: $ {coin.num_value} | 
     									<Button className="ui button" onClick={props.deleteCoin.bind(null, coin.id)} basic color='red'>
             								Remove
           								</Button>
@@ -122,7 +125,8 @@ const Coins = (props) => {
 	return (
 		<div>
 			<div>
-				<h1>Total melt value is ${totalMelt.toFixed(2)}</h1>
+				<h1>Total melt value is ${totalMelt.toFixed(2)}</h1><br/>
+				<h1>Total numismatic value is ${totalNumismatic}</h1>
 			</div>
 			<div>
 				{coinList}	
