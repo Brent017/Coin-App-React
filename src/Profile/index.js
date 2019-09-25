@@ -36,7 +36,7 @@ class Profile extends Component {
 						}
 					</Grid.Column>
 					<Grid.Column width={8}>
-						<Header className='Profile' as='h2' textAlign='center'>
+						<Header as='h2' textAlign='center'>
 							Good <TimeOfDay/> {this.props.userInfo.username} <br/>
 							<span></span> <br/>
 							Did you know: <br/>
@@ -46,9 +46,9 @@ class Profile extends Component {
 					<Grid.Column width={4}>
 						<iframe id="goldpriceiframe" 
 								src="//widgets.goldprice.com/widget/index.html" 
-								seamless="seamless" scrolling="no" frameborder="0" 
-								marginwidth="0" 
-								marginheight="0" 
+								seamless="seamless" scrolling="no" frameBorder="0" 
+								marginWidth="0" 
+								marginHeight="0" 
 								style={{width: "100%", height: "350px", overflowX: "hidden"}} 
 								>
 						</iframe>
