@@ -96,13 +96,13 @@ const Coins = (props) => {
 	
 	const coinList = props.coins.map((coin) => {
 		return (
-			<Grid stackable columns={2}>
+			<Grid columns={1}>
 				<Grid.Row>
-					<Grid.Column width={15}>
+					<Grid.Column width={15} style={{ fontSize: '20px' }}>
 						<div className="ui cards">
   							<div className="ui red fluid card">
     							<div className="content">
-    								<div key={coin.id} className="header melt">Date: {coin.year} | Face: $ {coin.denomination} | Mint: {coin.mint_mark} | Comp: {composition(coin)} | Melt: ${meltValue(coin)} | Numismatic Value: $ {coin.num_value} | 
+    								<div key={coin.id} style={{ fontSize: '20px' }} className="header melt">Date: {coin.year} | Face: $ {coin.denomination} | Mint: {coin.mint_mark} | Comp: {composition(coin)} | Melt: ${meltValue(coin)} | Numismatic Value: $ {coin.num_value} | 
     									<Button className="ui button" onClick={props.deleteCoin.bind(null, coin.id)} basic color='red'>
             								Remove
           								</Button>
@@ -114,9 +114,7 @@ const Coins = (props) => {
   							</div>
   						</div>
   					</Grid.Column>
-  					<Grid.Column width={1}>
-						
-					</Grid.Column>
+  					
 				</Grid.Row>
   			</Grid>
 		)

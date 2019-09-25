@@ -1,6 +1,9 @@
 .Profile {
+	min-height: 1000px;
 	background-image: linear-gradient(#1F8C13, #31D81E);
 	font-size: 20px;
+	background-size: cover;
+	background-height: 100%;
 }
 
 .header {

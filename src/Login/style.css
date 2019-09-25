@@ -1,6 +1,7 @@
 .login {
 	background-image: url('http://bgfons.com/uploads/money/money_texture1369.jpg');
-	height: 100vh
+	background-height: 200%;
+	background-size: cover;
 }
 
 .title {
