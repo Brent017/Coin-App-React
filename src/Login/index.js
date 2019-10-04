@@ -9,7 +9,8 @@ class Login extends Component {
 
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			notValid: false
 		}
 	}
 
@@ -41,6 +42,9 @@ class Login extends Component {
       if(data.status.message === 'Success!'){
         this.props.history.push('/profile')
       } else {
+      	this.setState({
+      		notValid: true
+      	})
         console.log(data, this.props)
       }
     }).catch((err) => {
@@ -50,8 +54,8 @@ class Login extends Component {
   }
 
 	render() {
-		return (
-			<Grid className='login' textAlign='center' verticalAlign='middle'>
+		return (		
+			<Grid className='login' textAlign='center' verticalAlign='middle' style={{ backgroundImage: '../public/gold_coin.jpg' }}>
 				<Grid.Column style={{ maxWidth: 450, height: 1000}}>
 					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas', textShadow: '2px 2px #ffffff'}} as='h2' textAlign='center'>
 						<br/>Coin Cache
@@ -63,6 +67,7 @@ class Login extends Component {
 						Password:
 						<Form.Input fluid icon='asterisk' iconPosition='left' placeholder='password' type='text' name='password' onChange={this.handleChange} />
 						<Button fluid size='large' type='submit'>Login</Button>
+						{this.state.notValid ? <div style={{ fontSize: '20px', color: 'red' }}>Invalid username or password, please try again.</div> : null}
 						<Message>
 							Not registered? <Link to='/register'>Register Now</Link>
 						</Message>

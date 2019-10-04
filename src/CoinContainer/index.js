@@ -46,7 +46,7 @@ class CoinContainer extends Component {
 	numismaticValue = () => {
 		let totalNumismatic = 0;
 		const coin = this.state.coins
-		console.log(coin[0].num_value, '<-- coin.data');
+		// console.log(coin[0].num_value, '<-- coin.data');
 		for(let i = 0; i < coin.length; i++) {
 			if(coin[i].num_val !== null) {
 				totalNumismatic += parseInt(coin[i].num_value)
@@ -203,8 +203,8 @@ class CoinContainer extends Component {
 				body: JSON.stringify(coin),
 				credentials: 'include',
 				headers: {
-					// 'enctype': 'multipart/form-data'
-					'Content-type': 'application/json'
+					'enctype': 'multipart/form-data'
+					// 'Content-type': 'application/json'
 				}
 			})
 			console.log(editRequest, 'editRequest');
@@ -225,7 +225,7 @@ class CoinContainer extends Component {
 				showEditModal: false
 			})
 		} catch(err) {
-			console.log(err, 'error editCoin');
+			console.log(err, 'error updateCoin');
 			return err
 		}
 

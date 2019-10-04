@@ -56,9 +56,9 @@ class CreateCoin extends Component {
 	render() {
 		return (
 			<div>
-				<h3 style={{fontSize: "22px"}}>Add New Coin</h3>
+				<h3 style={{fontSize: "28px"}}>Add New Coin</h3>
 				<Form form onSubmit={this.handleSubmit} onReset={this.handleClear} class='ui form'>
-				<div className='three fields'>
+				<div className='five fields'>
 					<div className='field'>
 						<Label>Year Minted: </Label>
 						<Form.Input type='text' name='year' placeholder='ie: 1900' onChange={this.updateCoin} value={this.state.year} />
@@ -70,7 +70,7 @@ class CreateCoin extends Component {
 					</div>
 					<div className='field'>
 						<Label>Numismatic Value: $</Label>
-						<Form.Input type='number' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
+						<Form.Input type='number' min='0.01' max='1,000,000.00' step='any' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
 					</div>
           			<div>
             			<Form.Select fluid label='Mint Mark' 

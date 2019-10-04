@@ -8,7 +8,8 @@ class EditCoin extends Component {
 			id: '',
 			year: '',
 			denomination: '',
-			mint_mark: ''
+			mint_mark: '', 
+			num_value: ''
 		}
 	}
 
@@ -52,10 +53,17 @@ class EditCoin extends Component {
 						<label>Mint Mark</label>
 						<input type="text" name="mint_mark" onChange={this.handleEditChange} value={this.state.mint_mark} />
 					</div>
+					<div className='field'>
+						<label>Numismatic Value: $</label>
+						<Form.Input type='number' min='0.01' max='1,000,000.00' step='any' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
+					</div>
 				</div>
 				<div className="centerme">
 					<Button class="teal " type="submit">
 						Edit Coin
+					</Button>
+					<Button class="teal" type="submit">
+						Close
 					</Button>
 				</div>
 			</form>
