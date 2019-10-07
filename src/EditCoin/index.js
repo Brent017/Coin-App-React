@@ -42,24 +42,24 @@ class EditCoin extends Component {
 			<form onSubmit={this.handleSubmit} class="ui form">
 				<div className="five fields">
 					<div className="field">
-						<label>Year</label>
+						<Label>Year</Label>
 						<input type="text" name="year" onChange={this.handleEditChange} value={this.state.year}/>
 					</div>
 					<div className="field">
-						<label>Denomination</label>
+						<Label>Denomination</Label>
 						<input type="text" name="denomination" onChange={this.handleEditChange} value={this.state.denomination} />
 					</div>
 					<div className="field">
-						<label>Mint Mark</label>
+						<Label>Mint Mark</Label>
 						<input type="text" name="mint_mark" onChange={this.handleEditChange} value={this.state.mint_mark} />
 					</div>
 					<div className='field'>
-						<label>Numismatic Value: $</label>
+						<Label>Numismatic Value: $</Label>
 						<Form.Input type='number' min='0.01' max='1,000,000.00' step='any' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
 					</div>
 				</div>
 				<div className="centerme">
-					<Button className="teal " type="submit">
+					<Button className="teal" type="submit">
 						Edit Coin
 					</Button>
 					<Button className="teal" onClick={this.props.closeModal}>

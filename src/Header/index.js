@@ -51,6 +51,9 @@ class Header extends Component {
         >
           Sign Out
         </Menu.Item>
+        <Menu.Item>
+          <h3 style={{fontSize: '30px', color: '#c0c0c0', fontStyle: 'Consolas', textShadow: '1px 1px #111'}} as='h2' textAlign='center'>Welcome to Coin Cache</h3>
+        </Menu.Item>
       </Menu>
     )
   }
