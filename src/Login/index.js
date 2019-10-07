@@ -57,7 +57,7 @@ class Login extends Component {
 		return (		
 			<Grid className='login' textAlign='center' verticalAlign='middle' style={{ backgroundImage: '../public/gold_coin.jpg' }}>
 				<Grid.Column style={{ maxWidth: 450, height: 1000}}>
-					<Header className='title' style={{fontSize: '80px', fontStyle: 'Consolas', textShadow: '2px 2px #ffffff'}} as='h2' textAlign='center'>
+					<Header className='title' style={{fontSize: '80px', color: '#c0c0c0', fontStyle: 'Consolas', textShadow: '1.5px 1.5px #111'}} as='h2' textAlign='center'>
 						<br/>Coin Cache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >

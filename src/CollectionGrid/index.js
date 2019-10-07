@@ -10,7 +10,7 @@ const CollectionGrid = (props, coin) => (
   <div>
   <button className='ui button' onClick={props.showModal.bind(null, coin)}>Add New Coin</button><br/>
   
-  <Grid columns={7} style={{fontSize: "22px", textAlign: "center", fontWeight: 'bold'}}>
+  <Grid columns={7} style={{fontSize: "28px", textAlign: "center", fontWeight: 'bold'}}>
     <Grid.Row>
       <Grid.Column>
       </Grid.Column>
