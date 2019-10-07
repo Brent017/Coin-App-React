@@ -38,18 +38,18 @@ class EditCoin extends Component {
 	render() {
 	return (
 		<div className="ui-container">
-		<h3 style={{fontSize: "22px"}}>Edit Coin</h3>
+		<h3 style={{fontSize: "28px"}}>Edit Coin</h3>
 			<form onSubmit={this.handleSubmit} class="ui form">
-				<div class="five fields">
-					<div class="field">
+				<div className="five fields">
+					<div className="field">
 						<label>Year</label>
 						<input type="text" name="year" onChange={this.handleEditChange} value={this.state.year}/>
 					</div>
-					<div class="field">
+					<div className="field">
 						<label>Denomination</label>
 						<input type="text" name="denomination" onChange={this.handleEditChange} value={this.state.denomination} />
 					</div>
-					<div class="field">
+					<div className="field">
 						<label>Mint Mark</label>
 						<input type="text" name="mint_mark" onChange={this.handleEditChange} value={this.state.mint_mark} />
 					</div>
@@ -59,10 +59,10 @@ class EditCoin extends Component {
 					</div>
 				</div>
 				<div className="centerme">
-					<Button class="teal " type="submit">
+					<Button className="teal " type="submit">
 						Edit Coin
 					</Button>
-					<Button class="teal" type="submit">
+					<Button className="teal" onClick={this.props.closeModal}>
 						Close
 					</Button>
 				</div>

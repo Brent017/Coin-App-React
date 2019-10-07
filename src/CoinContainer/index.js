@@ -44,14 +44,17 @@ class CoinContainer extends Component {
 	}
 
 	numismaticValue = () => {
-		let totalNumismatic = 0;
+		let totalNumismatic = 0.00;
 		const coin = this.state.coins
 		// console.log(coin[0].num_value, '<-- coin.data');
 		for(let i = 0; i < coin.length; i++) {
 			if(coin[i].num_val !== null) {
-				totalNumismatic += parseInt(coin[i].num_value)
+				totalNumismatic += parseFloat(coin[i].num_value)
+				console.log(parseInt(coin[i].num_value), 'num_value inside loop');
+				console.log(totalNumismatic, 'totalNumismatic inside loop');
 			}
 		}
+		console.log(totalNumismatic, 'num_value inside numismaticValue function');
 		this.setState({
 			totalNumismatic: totalNumismatic
 		})
@@ -95,6 +98,12 @@ class CoinContainer extends Component {
 		this.setState({
 			coinToAdd: coin,
 			showCoinModal: !this.state.showEditModal
+		})
+	}
+
+	closeModal = () => {
+		this.setState({
+			showCoinModal: false
 		})
 	}
 
@@ -196,19 +205,20 @@ class CoinContainer extends Component {
 	}
 
 	updateCoin = async (coin) => {
-		console.log('coin in updateCoin: ', coin)
+		console.log('coin in updateCoin: ', this.state.coinToEdit)
 		try {
-			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + coin.id, {
+			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.state.coinToEdit.id, {
 				method: 'PUT',
-				body: JSON.stringify(coin),
 				credentials: 'include',
+				body: JSON.stringify(this.state.coinToEdit),
 				headers: {
-					'enctype': 'multipart/form-data'
-					// 'Content-type': 'application/json'
+					'Content-type': 'application/json'
 				}
 			})
 			console.log(editRequest, 'editRequest');
-			
+			if(editRequest.status !== 200) {
+				throw Error('edit request not working')
+			}
 			const editResponse = await editRequest.json();
 			console.log('editResponse: ', editResponse)
 			if(editResponse.status.code !== 200) {
@@ -232,6 +242,7 @@ class CoinContainer extends Component {
 	}
 
 	editCoin = (coin) => {
+		console.log(coin, 'COIN in editCoin');
 		this.setState({
 			coinToEdit: {...coin},
 			showEditModal: true
@@ -272,7 +283,8 @@ class CoinContainer extends Component {
 				{	this.state.showEditModal ? 
 					<EditCoin 
 						updateCoin={this.updateCoin} 
-						coinToEdit={this.state.coinToEdit} /> 
+						coinToEdit={this.state.coinToEdit}
+						closeModal={this.closeModal} /> 
 					: 
 						null
 				}
