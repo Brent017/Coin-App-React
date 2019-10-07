@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import './style.css';
+// import Image from '../coins_gold.jpg';
 
 class Login extends Component {
 	constructor() {
@@ -55,10 +55,10 @@ class Login extends Component {
 
 	render() {
 		return (		
-			<Grid className='login' textAlign='center' verticalAlign='middle' style={{ backgroundImage: '../public/gold_coin.jpg' }}>
+			<Grid className='login' textAlign='center' verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450, height: 1000}}>
-					<Header className='title' style={{fontSize: '80px', color: '#c0c0c0', fontStyle: 'Consolas', textShadow: '1.5px 1.5px #111'}} as='h2' textAlign='center'>
-						<br/>Coin Cache
+					<Header className='title' style={{fontSize: '80px', color: '#c0c0c0', fontStyle: 'Consolas', textShadow: '2px 2px #111'}} as='h2' textAlign='center'>
+						<br/><span>&#162;</span>oin <span>&#162;</span>ache
 					</Header>
 					<Form onSubmit={this.handleSubmit} >
 						<Segment stacked >

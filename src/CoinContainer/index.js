@@ -50,15 +50,11 @@ class CoinContainer extends Component {
 		for(let i = 0; i < coin.length; i++) {
 			if(coin[i].num_val !== null) {
 				totalNumismatic += parseFloat(coin[i].num_value)
-				console.log(parseInt(coin[i].num_value), 'num_value inside loop');
-				console.log(totalNumismatic, 'totalNumismatic inside loop');
 			}
 		}
-		console.log(totalNumismatic, 'num_value inside numismaticValue function');
 		this.setState({
 			totalNumismatic: totalNumismatic
 		})
-		console.log(this.state.totalNumismatic, 'totalNumismatic');
 	}
 
 	addCoin = async (coin) => {
@@ -104,6 +100,12 @@ class CoinContainer extends Component {
 	closeModal = () => {
 		this.setState({
 			showCoinModal: false
+		})
+	}
+
+	closeEditModal = () => {
+		this.setState({
+			showEditModal: false
 		})
 	}
 
@@ -284,7 +286,7 @@ class CoinContainer extends Component {
 					<EditCoin 
 						updateCoin={this.updateCoin} 
 						coinToEdit={this.state.coinToEdit}
-						closeModal={this.closeModal} /> 
+						closeEditModal={this.closeEditModal} /> 
 					: 
 						null
 				}

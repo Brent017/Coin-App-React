@@ -30,19 +30,19 @@ class CreateCoin extends Component {
 		})
 	}
 
-  handleSelectChange=(e,{value})=>this.setState({mint_mark:value})
+  	handleSelectChange=(e,{value})=>this.setState({mint_mark:value})
 
-  handleSubmit = (e, value) => {
-    e.preventDefault();
+  	handleSubmit = (e, value) => {
+    	e.preventDefault();
 
-    const data = new FormData();
-    data.append('year', this.state.year)
-    data.append('denomination', this.state.denomination)
-    data.append('mint_mark', this.state.mint_mark)
-    data.append('num_value', this.state.num_value)
-    // console.log(this.state, 'this.state');
-    this.props.addCoin(data)
-  }
+    	const data = new FormData();
+    	data.append('year', this.state.year)
+    	data.append('denomination', this.state.denomination)
+    	data.append('mint_mark', this.state.mint_mark)
+    	data.append('num_value', this.state.num_value)
+    	// console.log(this.state, 'this.state');
+    	this.props.addCoin(data)
+  	}
 
 	handleClear = () => {
 		this.setState({
@@ -53,10 +53,11 @@ class CreateCoin extends Component {
 		})
 	}
 
-	render() {
+	render(props) {
+		console.log(props, 'props in render CreateCoin');
 		return (
 			<div>
-				<h3 style={{fontSize: "28px"}}>Add New Coin</h3>
+				<h4 style={{fontSize: "28px"}}>Add New Coin</h4>
 				<Form form onSubmit={this.handleSubmit} onReset={this.handleClear} class='ui form'>
 				<div className='five fields'>
 					<div className='field'>
@@ -71,6 +72,8 @@ class CreateCoin extends Component {
 					<div className='field'>
 						<Label>Numismatic Value: $</Label>
 						<Form.Input type='number' min='0.01' max='1,000,000.00' step='any' name='num_value' placeholder='0.00' onChange={this.updateCoin} value={this.state.num_value} />
+						<Label>.01 and up</Label>
+						<h3><a href='https://www.ngccoin.com/price-guide/united-states/' target='_blank' rel="noopener noreferrer">Click Here to Search<br/>Numismatic Values<br/>(will open in new tab)</a></h3>
 					</div>
           			<div>
             			<Form.Select fluid label='Mint Mark' 
@@ -80,10 +83,10 @@ class CreateCoin extends Component {
                           	onChange={this.handleSelectChange} /></div>
 					</div>
 					<div>
-						<Button type='submit'>
+						<Button className="teal" type='submit'>
 							Add Coin to Collection 
 						</Button>
-						<Button  type='reset'>
+						<Button className="teal" type='reset'>
 							Clear 
 						</Button>
 					</div>
