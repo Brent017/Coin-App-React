@@ -19,7 +19,6 @@ class Profile extends Component {
 
 
 	render() {
-		// console.log(this.state, this.props.userInfo, '<-in profile<props');
 		return (
 			<Grid stackable columns={3} padded className='Profile'>
 				<Grid.Row>

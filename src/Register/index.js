@@ -16,7 +16,7 @@ class Register extends Component {
 	}
 
 	handleChange = (e) => {
-		// console.log(e.currentTarget);
+		
 		if(e.currentTarget.name !== 'image') {
 			this.setState({
 				[e.currentTarget.name]: e.currentTarget.value

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Button, Label } from 'semantic-ui-react';
-// import DropdownBox from '../DropdownBox';
 
 const options = [
   { key: 1, text: 'None', value: '' },

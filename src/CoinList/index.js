@@ -7,7 +7,6 @@ const Coins = (props) => {
 	let totalMelt = 0;
 	let totalNumismatic = props.totalNumismatic;
 	let silver = props.silverMelt
-	// console.log(props.copperMelt, 'props.copperMelt');
 	let copper = props.copperMelt;
 	let gold = props.goldMelt;
 	

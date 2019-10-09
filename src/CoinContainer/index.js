@@ -210,7 +210,6 @@ class CoinContainer extends Component {
 	}
 
 	updateCoin = async (coin) => {
-		// console.log('this.state.coin in updateCoin: ', this.state.coinToEdit)
 		console.log('coin in updateCoin: ', coin);
 		try {
 			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + coin.id, {

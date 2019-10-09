@@ -30,7 +30,6 @@ class Login extends Component {
     data.append('username', this.state.username)
     data.append('password', this.state.password)
 
-    // console.log(data, "<-data after appending key-value");
     const login = this.props.logIn(this.state);
 
   //   for(let pair of data.entries()) {
