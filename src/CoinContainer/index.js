@@ -79,13 +79,11 @@ class CoinContainer extends Component {
 				showCoinModal: false
 				
 			})
-			// console.log(this.state.coins, '<---coins array');
 		} catch(err) {
 			console.log(err, 'addCoin error');
 			return err
 		}
 		this.getCoins();
-		// console.log(this.state.coins, '<---coins array');
 	}
 
 	showModal = (coin) => {
