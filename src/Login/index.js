@@ -58,7 +58,7 @@ class Login extends Component {
 			<Grid className='login' textAlign='center' verticalAlign='middle'>
 				<Grid.Column style={{ maxWidth: 450, height: 1000}}>
 					<Header className='title' style={{fontSize: '80px', color: '#c0c0c0', fontStyle: 'Consolas', textShadow: '2px 2px #111'}} as='h2' textAlign='center'>
-						<br/><span>&#162;</span>oin <span>&#162;</span>ache
+						<br/>Coin Ca<span>&#162;</span>he
 					</Header>
 					<Form onSubmit={this.handleSubmit} >
 						<Segment stacked >

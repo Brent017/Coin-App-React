@@ -54,7 +54,6 @@ class CreateCoin extends Component {
 	}
 
 	render(props) {
-		console.log(props, 'props in render CreateCoin');
 		return (
 			<div>
 				<h4 style={{fontSize: "28px"}}>Add New Coin</h4>

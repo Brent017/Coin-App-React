@@ -75,7 +75,6 @@ class CoinContainer extends Component {
 			const createCoinResponse = await createCoin.json();
 			console.log(createCoinResponse.data, "Coin DATAAAA");
 			this.setState({
-				// coins: [...this.state.coins, createCoinResponse.data],
 				coins: createCoinResponse.data,
 				showCoinModal: false
 				
@@ -111,14 +110,14 @@ class CoinContainer extends Component {
 
 	getSilverValue = async () => {
 		try {
-			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_SI1', {
+			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_SI1?api_key=eJytx4A9GTBYAKVhEU3H', {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json'
 				}
 			})
 			const meltJson = await melt.json();
-			// console.log(meltJson.dataset.data[0][2], "MELT JSON");
+			console.log(meltJson.dataset.data[0][2], "MELT JSON");
 
 			this.setState({
 				silverMelt: meltJson.dataset.data[0][2]
@@ -131,7 +130,7 @@ class CoinContainer extends Component {
 
 	getCopperValue = async () => {
 		try {
-			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_HG1', {
+			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_HG1?api_key=eJytx4A9GTBYAKVhEU3H', {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json'
@@ -150,7 +149,7 @@ class CoinContainer extends Component {
 
 	getGoldValue = async () => {
 		try {
-			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_GC1', {
+			const melt = await fetch('https://www.quandl.com/api/v3/datasets/CHRIS/CME_GC1?api_key=eJytx4A9GTBYAKVhEU3H', {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json'
@@ -170,7 +169,13 @@ class CoinContainer extends Component {
 	getCoins = async () => {
 		try {
 			// console.log(this.props, 'props in get');
-			const responseGetCoins = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.props.userInfo.id)
+			const responseGetCoins = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.props.userInfo.id, {
+				method: 'GET',
+				credentials: 'include',
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
+			})
 			
 			// console.log(responseGetCoins, 'responseGetCoins');
 			const coinsResponse = await responseGetCoins.json();
@@ -207,12 +212,13 @@ class CoinContainer extends Component {
 	}
 
 	updateCoin = async (coin) => {
-		console.log('coin in updateCoin: ', this.state.coinToEdit)
+		// console.log('this.state.coin in updateCoin: ', this.state.coinToEdit)
+		console.log('coin in updateCoin: ', coin);
 		try {
-			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + this.state.coinToEdit.id, {
+			const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + coin.id, {
 				method: 'PUT',
 				credentials: 'include',
-				body: JSON.stringify(this.state.coinToEdit),
+				body: JSON.stringify(coin),
 				headers: {
 					'Content-type': 'application/json'
 				}
@@ -254,7 +260,11 @@ class CoinContainer extends Component {
 	deleteCoin = async (id) => {
 		try {
 			const deleteCoin = await fetch(process.env.REACT_APP_BACKEND_URL + '/coins/v1/' + id, {
-				method: 'DELETE'
+				method: 'DELETE',
+				credentials: 'include',
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
 			})
 			if(deleteCoin.status !== 200) {
 				throw Error('An error occurred on delete')
