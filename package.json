@@ -12,7 +12,6 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-    "build": "bower install && grunt build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
